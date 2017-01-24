@@ -1,0 +1,41 @@
+Isolate Scope "@"    - One way data binding
+********************************************
+Extract directive's attribute by name from view, and assign it to the scope.
+And this scope variable can be used in directive template.
+
+scope: {
+      flavor: "@" //if attribute name is same as scope name
+      dirflavor: "@flavor" //attribute can be assigned with different name
+    }
+
+Isolate Scope "="    - Two way data binding
+*********************************************
+Using this child directive can update the parent scope properties and vice versa.
+scope: {      flavor: "="     },
+
+Isolate Scope "&"  - Call Expression
+*************************************
+Call an expression on the parent scope from the isolated scope you use the & symbol
+
+app.directive("phone", function () {
+  return {
+    scope: {
+      dial: "&"
+    },
+    template: '<input type="text" ng-model="value">' +
+      '<div class="button" ng-click="dial({message:value})">' +
+      'Call home!</div>',
+  };
+});
+
+app.controller("AppCtrl", function ($scope) {
+  $scope.callHome = function (message) {
+    alert(message);
+  };
+});
+
+HTML/Template:
+<div phone dial="callHome(message)"></div>
+
+
+

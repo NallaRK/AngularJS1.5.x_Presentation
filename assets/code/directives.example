@@ -1,0 +1,72 @@
+
+/*Simple Directive*/
+var app = angular.module("myApp", []);
+
+app.directive("myCustomDirective", function() {
+        return {
+            restrict: 'EACM',
+            template : "<h1>Some custom elemement/widget</h1>"
+        };
+});
+
+/*HTML -View */
+
+<my-custom-directive></my-custom-directive>
+
+<div my-custom-directive></div>
+
+<div class=my-custom-directive></div>
+
+<!--directive: my-custom-directive -->
+
+
+/* Directive Properties*/
+
+function myCustomDirective () {
+  return {
+    restrict: 'EA',   
+    replace: true,
+    scope: {}, // { } isolated scope
+    controller: function () {          },
+    controllerAs: 'aliasName',
+    link: function ($scope, $element, $attrs) {
+        $element.bind('click', function() {
+        $element.css('background-color', 'white');
+        $scope.$apply(function() {
+          $scope.color = "white";
+        });
+      });
+      $element.bind('mouseover', function() {
+        $element.css('cursor', 'pointer');
+      });
+
+
+    },
+    template:'<p style="background-color:{{color}}">Hello World',
+  };
+}
+
+
+/*ng-transclude*/
+transclude: true 
+
+
+directive's template: 
+*********************
+<div>This is the your component</div>
+//inner HTML will be included below
+<ng-transclude></ng-transclude>
+
+VIEW/HTML:
+*********
+<welcome>
+	<div>This is the your component</div>
+	<ng-transclude>
+	    <button>Click this button</button>
+	</ng-transclude>
+ </welcome>
+
+
+
+
+

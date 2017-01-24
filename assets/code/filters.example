@@ -1,0 +1,29 @@
+
+Built-in FILTERS
+*******************
+STRING Manipulation:
+{{ copy | uppercase }}
+{{ copy | lowercase }}
+
+Number format filters:
+{{ defaultNumber | number }}
+//Round Number to Two Decimal Places: 
+{{ defaultNumber | number:2 }}
+
+Currency filters:
+{{ defaultNumberWhole | currency }}
+Custom Currency Filter: 
+{{ defaultNumber | currency:'Rs' }}
+
+Date filters:
+{{ dateCommon | date }}
+{{ dateCommon | date:'fullDate' }}
+{{ dateCommon | date:'yyyy' }}   // Year Only Filter
+Custom Date Filter: 
+{{ dateUTC | date:"'Year:' yyyy, 'Month:' MMM, 'Day:' EEEE" }}
+// output: Year: 2014, Month: Oct, Day: Saturday
+
+JSON Filter:
+{{ userInfo | json }}  //prettifies it by including indentation so that the JSON is much easier to read
+
+

@@ -1,0 +1,25 @@
+/*
+Custom filters
+*/
+
+// Custom filter
+function toCapital() {
+
+    //return a closure
+    return function (item) {
+
+        //logic to format data and retun it.
+         return item.toUpperCase();
+    };
+
+}
+angular
+  .module('app')
+  .controller('myController', myController)
+  .filter('toCapital', toCapital);
+
+//using filter in HTML
+<p>{{ user.name | toCapital }}</p>
+
+//using filter in javascript - Preferred method
+ $scope.cardName = $filter('toCapital')('blue cash everyday'); 

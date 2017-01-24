@@ -1,0 +1,56 @@
+ui-router routes supports for mainly for --> Nested/Complex/Multiple views.
+
+ui-router allows for nested views and multiple named views. This is very useful with larger app where you may have pages that inherit from other sections.
+
+With the built-in AngularJS router, ngRoute, only one view (ng-view) is allowed per page.
+
+Using ui-view directive:
+************************
+<div ui-view></div>    //  ngRoute’s <div ng-view></div>
+
+<li><a ui-sref="home">Home</a></li>
+
+angular
+    .module('CPSApp.RouteConfig').config(function($stateProvider, $urlRouterProvider) {
+
+        $urlRouterProvider.otherwise('/home');
+
+        $stateProvider
+
+        // HOME STATES AND NESTED VIEWS ========================================
+            .state('home', {
+            url: '/home',
+            templateUrl: 'templates/partial-home.html'
+        })
+
+        // nested list with custom controller
+        .state('home.list', {
+            url: '/list',
+            templateUrl: 'templates/partial-home-list.html',
+            controller: function($scope) {
+                $scope.creditCards = ['BCE', 'BCP', 'AmexEveryDay'];
+            }
+        })
+
+
+  
+  /** Multi Views */
+          .state('details', {
+            url: '/CardDetails',
+            views: {
+
+                // the main template will be placed here (relatively named)
+                '': { templateUrl: 'templates/partial-details.html' },
+
+                // the child views will be defined here (absolutely named)
+                'columnOne@benefits': { template: 'Show Card benefits here' },
+
+                // for column two, we'll define a separate controller 
+                'columnTwo@fee': {
+                    templateUrl: 'templates/fee.html',
+                    controller: 'sideBarController',
+                    controllerAs: "sideCntr"
+                }
+            }
+
+        });

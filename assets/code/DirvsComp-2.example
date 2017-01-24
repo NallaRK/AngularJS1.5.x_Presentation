@@ -1,0 +1,30 @@
+.component('cardSection', {
+
+  bindings: {
+    name: '<'
+  },
+  
+
+  transclude: true,
+  
+  controller: function () {
+    function postData() {
+      this.name="changed";
+    }
+    this.postData = postData;     
+  }
+  //controllerAs: 'cardCtrl'
+  //if not defined, angular automatically creates $ctrl  
+  template: `
+    <div class="todo">
+      <input type="text" 
+      ng-model="$$ctrl.name">
+
+      <button type="button" 
+      ng-click="$$ctrl.postData();">Post</button>      
+    </div>`
+   
+});
+
+
+

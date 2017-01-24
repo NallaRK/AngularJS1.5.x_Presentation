@@ -1,0 +1,33 @@
+LimitTo:
+Limit some string or array to a certain length. 
+
+LimitTo Filter Applied to a String: 
+{{ copy | limitTo:150 }}
+
+LimitTo Filter Applied to an Array: 
+<ul> 
+	<li ng-repeat="person in list | limitTo:4"> {{person}} </li> 
+</ul>
+
+CHAINING FILTERS
+****************
+{{ totalCost | currency | filter2 | filter3 }}
+EXTENDED FILTERS
+****************
+{{ totalCost | currency:"USD$" }}
+
+In-Built :: filterFilter
+************************
+angular.module('appModule', [])
+  .controller('appController', ['$scope', 'filterFilter', function($scope, filterFilter) {
+ $scope.cards = [
+      {name: 'PRG', type: 'charge'},
+      {name: 'Platinum', type: 'charge'},
+      {name: 'Blue Cash Everyday', type: 'credit'},
+      {name: 'Amex Everyday', type: 'credit'},
+      {name: 'Blue Cash Preferred', type: 'credit'},
+      {name: 'Delta Reserve', type: 'partner'}
+    ];
+
+$scope.containsday = filterFilter($scope.cards, 'day'); // by text, it will check inside name and type
+$scope.creditCards = filterFilter($scope.cards, {type: 'credit'}); // by attribute

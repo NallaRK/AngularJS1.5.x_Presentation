@@ -1,0 +1,32 @@
+.directive('cardSection', function() {
+  return {
+    scope: {},
+    bindToController: {
+      name: '='
+    },
+    
+    transclude: true,
+
+    controller: function () {
+      function postData() {
+        this.name="changed";
+      }
+      this.postData = postData;      
+    },
+    controllerAs: 'cardCtrl',
+   
+    template: `
+    <div class="todo">
+      <input type="text" 
+      ng-model="$cardCtrl.name">
+
+      <button type="button" 
+      ng-click="$cardCtrl.postData();">Post</button>      
+    </div>`
+
+  };
+});
+
+
+
+

@@ -1,0 +1,25 @@
+HTML Code
+**********
+<body ng-app="mainApp"> 
+             
+    <div ng-controller="myController as mycntr">         
+          {{mycntr.name}}
+    </div>
+
+    <script src="./node_modules/angular/angular.min.js"></script>
+</body>
+
+
+
+Main Module - JS Code
+***********************
+
+angular
+.module('mainApp', [])
+.controller('myController', myController);
+
+function myController() { 
+    this.name="This is my Controller";
+}
+
+
